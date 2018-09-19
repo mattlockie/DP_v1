@@ -4,9 +4,10 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
     public GameObject deathEffect;
+
     public int health = 1;
     public float speed = 20.0f;
-    private int points = 10;
+    private readonly int points = 10;
 
     public void TakeDamage(int damage)
     {
@@ -19,6 +20,10 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        // update score
+        GameManager.Instance.UpdateScore(points);
+
+        // die!
         PlayDeathEffect();
         Destroy(gameObject);
     }
