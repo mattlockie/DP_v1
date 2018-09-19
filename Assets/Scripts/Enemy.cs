@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         // create the death effect at the enemy position
         GameObject deathEffectInstance = (GameObject)Instantiate(deathEffect, transform.position, transform.rotation);
-        Destroy(deathEffectInstance, 2.0f);
+        // after a delay, destroy the object :: needs sufficient time to play the fade-out effect
+        Destroy(deathEffectInstance, 4.0f);
     }
 }
