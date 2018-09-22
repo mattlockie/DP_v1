@@ -1,33 +1,42 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
+
     private int score = 0;
     public Text scoreText;
 
-    private static GameManager _instance;
+    public static GameManager Instance;
 
-    public static GameManager Instance
+    void InitialiseGameManager()
     {
-        get
+        if (Instance == null)
         {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<GameManager>();
-            }
-            return _instance;
+            Instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        InitialiseGameManager();
     }
 
     public void UpdateScore(int value)
     {
-        scoreText.text = "SCORE: " + Mathf.Max(0, score += value);
+        if (score + value <= 0)
+        {
+            score = 0;
+        }
+        else
+        {
+            score += value;
+        }
+        scoreText.text = "SCORE: " + score;
     }
 }

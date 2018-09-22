@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DropPodMovement : MonoBehaviour
-{
+public class Paratrooper : MonoBehaviour {
+	
 	void Start() 
 	{
 		

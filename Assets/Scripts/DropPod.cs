@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class DropPod : MonoBehaviour
-{
+public class DropPod : MonoBehaviour {
+
     public GameObject defaultWeapon;
     public Transform weaponSpawnPoint;
 

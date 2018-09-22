@@ -1,13 +1,40 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
+
     public GameObject deathEffect;
+    public Rigidbody2D rb;
+
+    public GameObject cargo;
+    public float cargoDropDelay;
+    private Vector3 cargoDropOffset;
 
     public int health = 1;
-    public float speed = 20.0f;
+    public float speed = 5.0f;
     private readonly int points = 10;
+
+    void Start()
+    {
+        // move enemy across the screen based on speed
+        MoveAcrossScreen();
+    }
+
+    void MoveAcrossScreen()
+    {
+        Transform enemyTransform = rb.transform;
+        
+        if (enemyTransform.position.x < 0)
+        {   
+            // if spawned on left side of screen, move right
+            transform.rotation = Quaternion.Euler(enemyTransform.rotation.x, 0, enemyTransform.rotation.z);
+        }
+        else if (enemyTransform.position.x > 0)
+        {
+            // if spawned on right side of screen, move left
+            transform.rotation = Quaternion.Euler(enemyTransform.rotation.x, -180, enemyTransform.rotation.z);
+        }
+        rb.velocity = transform.right * speed;
+    }
 
     public void TakeDamage(int damage)
     {
