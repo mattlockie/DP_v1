@@ -88,8 +88,7 @@ MonoBehaviour:
   deathEffect: {fileID: 1000011328820130, guid: 9b8a01130381c4c44aacb13a57e7e6bc,
     type: 2}
   rb: {fileID: 50000010034075630}
-  cargo: {fileID: 0}
-  cargoDropDelay: 0
+  cargo: {fileID: 1000013648325958, guid: dc595f65116fe834d929110d9bbb104e, type: 2}
   health: 1
   speed: 2
 --- !u!212 &212000011975592014

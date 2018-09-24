@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour {
 
     public float speed = 20.0f;
     public int attackDamage = 1;
-    private float projectileLifespan = 1.25f;
+    private float projectileLifespan = 1.5f;
     private readonly int points = -1;
     public string soundEffect;
 
@@ -34,14 +34,23 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        // remove projectile
-        Destroy(gameObject);
-
         // damage the enemy
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         if (enemy != null)
         {
+            Destroy(gameObject);
             enemy.TakeDamage(attackDamage);
+        }
+        // destroy the bomb
+        Bomb bomb = hitInfo.GetComponent<Bomb>();
+        if (hitInfo.tag == "Bomb")
+        {
+            // TODO: Destroy DroPod and End Game
+            if (bomb != null)
+            {
+                Destroy(gameObject);
+                bomb.TakeDamage(attackDamage);
+            }
         }
     }
 }

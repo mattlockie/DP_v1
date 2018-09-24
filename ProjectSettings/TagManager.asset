@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Bomb
   - DropPod
+  - Enemy
+  - BombTrigger
+  - DespawnTrigger
   layers:
   - Default
   - TransparentFX

@@ -86,6 +86,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 50000013239688440}
+  deathEffect: {fileID: 1000011328820130, guid: 77eb6024bc8ce88429f0bb75e6b693d9,
+    type: 2}
+  health: 1
+  points: 30
 --- !u!212 &212000011069331042
 SpriteRenderer:
   m_ObjectHideFlags: 1

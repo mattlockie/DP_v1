@@ -6,17 +6,31 @@ public class Enemy : MonoBehaviour {
     public Rigidbody2D rb;
 
     public GameObject cargo;
-    public float cargoDropDelay;
-    private Vector3 cargoDropOffset;
+    private bool cargoDropped;
+    //private Vector3 cargoDropOffset;
 
     public int health = 1;
     public float speed = 5.0f;
     private readonly int points = 10;
 
+    //private float despawnCountdown;
+    //private float despawnAfter = 5.0f;
+
     void Start()
     {
         // move enemy across the screen based on speed
+        //despawnCountdown = despawnAfter;
         MoveAcrossScreen();
+    }
+
+    private void Update()
+    {
+        //despawnCountdown -= Time.deltaTime;
+        //if (despawnCountdown <= 0)
+        //{
+        //    Despawn();
+        //    despawnCountdown = despawnAfter;
+        //}
     }
 
     void MoveAcrossScreen()
@@ -55,11 +69,36 @@ public class Enemy : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private void PlayDeathEffect()
+    void Despawn()
+    {
+        // just despawn
+        Destroy(gameObject);
+    }
+
+    void PlayDeathEffect()
     {
         // create the death effect at the enemy position
         GameObject deathEffectInstance = (GameObject)Instantiate(deathEffect, transform.position, transform.rotation);
         // after a delay, destroy the object :: needs sufficient time to play the fade-out effect
         Destroy(deathEffectInstance, 4.0f);
     }
+
+    private void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (cargo.name == "Bomb")
+        {
+            if (!cargoDropped && hitInfo.tag == "BombTrigger")
+            {
+                cargoDropped = true;
+                Instantiate(cargo, transform.position, Quaternion.identity);
+            }
+        }
+
+        // once an enemy is off screen, let's despawn them
+        if (hitInfo.tag == "DespawnTrigger")
+        {
+            Despawn();
+        }
+    }
+
 }
