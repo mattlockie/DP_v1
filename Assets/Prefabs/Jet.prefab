@@ -21,8 +21,11 @@ GameObject:
   - 4: {fileID: 4000012645178460}
   - 212: {fileID: 212000011975592014}
   - 114: {fileID: 114000012365427306}
+  - 114: {fileID: 114000010768626542}
+  - 114: {fileID: 114000011015502926}
   - 61: {fileID: 61000012708660694}
   - 50: {fileID: 50000010034075630}
+  - 95: {fileID: 95000013208367534}
   m_Layer: 0
   m_Name: Jet
   m_TagString: Enemy
@@ -74,6 +77,59 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1.4354165, y: 0.6137902}
+--- !u!95 &95000013208367534
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013024305702}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aed279802924131449a10c986c0d1b73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010768626542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013024305702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c276e2fa5fd5a4983392d7fce0ab5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  points: 10
+  deathEffects:
+  - {fileID: 1000011328820130, guid: 9b8a01130381c4c44aacb13a57e7e6bc, type: 2}
+  - {fileID: 1000011328820130, guid: 927fbfa6d6cdf944bb3baf6a9ebddf1d, type: 2}
+  - {fileID: 1000011328820130, guid: 3319ef888ce7a874384afec8c75d314f, type: 2}
+  effectsPositionOffset: {fileID: 0}
+--- !u!114 &114000011015502926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013024305702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39413234b5f711498a4aedbc9c6d7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cargo: {fileID: 1000014016784968, guid: fe9dd4a262bddb641bbb5ece5a793a77, type: 2}
+  cargoDropped: 0
+  cargoOffset: {x: 0, y: 0, z: 0}
+  useTrigger: 1
+  trigger: {fileID: 61000013359431122, guid: 9c47dd35a2cf5b14a90413a1d61ff8d5, type: 2}
+  dropTimeMin: 1
+  dropTimeMax: 8
 --- !u!114 &114000012365427306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,12 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabbe55cb6576e247b443618c4dc055d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathEffect: {fileID: 1000011328820130, guid: 9b8a01130381c4c44aacb13a57e7e6bc,
-    type: 2}
   rb: {fileID: 50000010034075630}
-  cargo: {fileID: 1000014016784968, guid: fe9dd4a262bddb641bbb5ece5a793a77, type: 2}
-  health: 1
-  speed: 6
+  speed: 5
 --- !u!212 &212000011975592014
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -119,7 +171,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2109235399
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300010, guid: d75329ab0071b9948a3dda04fbbb01e9, type: 3}
   m_Color: {r: 0.82745105, g: 0.82745105, b: 0.82745105, a: 1}
   m_FlipX: 0

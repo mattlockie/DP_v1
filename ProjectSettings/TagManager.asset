@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - BombTrigger
   - DespawnTrigger
+  - Chute
+  - Trooper
+  - Paratrooper
+  - Mount
   layers:
   - Default
   - TransparentFX
@@ -51,6 +55,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 2185731897
+    locked: 0
+  - name: Effects
+    uniqueID: 1104876227
     locked: 0
   - name: Player
     uniqueID: 2887003393

@@ -6,7 +6,7 @@ public class DropPod : MonoBehaviour {
     public Transform weaponSpawnPoint;
 
     private Vector3 currentAngle;
-    private float pivotSpeed = 150.0f;
+    private float pivotSpeed = 200.0f;
     private int minAngle = 100;
     private int maxAngle = 260;
 
@@ -18,7 +18,10 @@ public class DropPod : MonoBehaviour {
 
     void Update()
     {
-        RotateWeapon();
+        if (weaponSpawnPoint != null)
+        {
+            RotateWeapon();
+        }
     } 
 
     void RotateWeapon()

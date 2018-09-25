@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d75329ab0071b9948a3dda04fbbb01e9
-timeCreated: 1537775381
+timeCreated: 1537779293
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -75,7 +75,7 @@ TextureImporter:
       name: HelicopterSprite_1
       rect:
         serializedVersion: 2
-        x: 226
+        x: 224
         y: 80
         width: 23
         height: 10
@@ -88,9 +88,9 @@ TextureImporter:
       name: HelicopterSprite_2
       rect:
         serializedVersion: 2
-        x: 250
+        x: 249
         y: 80
-        width: 22
+        width: 23
         height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -167,9 +167,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 283
-        y: 53
+        y: 60
         width: 14
-        height: 21
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

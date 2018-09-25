@@ -3,32 +3,28 @@ using System.Collections;
 
 public class Bomb : MonoBehaviour {
 
-    private Transform target;
+    public Transform target;
     public Rigidbody2D rb;
     private float speed = 9.0f;
-    private float distanceCheck = 0.175f;
-    private float speedTweak = 1.005f;
-    private readonly float moveSpeed = 10.0f;
+    private readonly float distanceCheck = 0.175f;
+    private readonly float speedTweak = 1.005f;
+
+    public int attackDamage = 1;
 
     private Transform startingPosition;
     private Transform endingPosition;
 
     private Bezier bezier;
     Vector3 halfway;
-    private Vector3 currentPoint;
     private Vector3 nextPoint;
     private Vector3[] positions;
     private bool shouldMove = true;
 
     private int pointIndex = 0;
 
-    public GameObject deathEffect;
-    public int health = 1;
-    public int points = 30;
-
     private void Awake()
     {
-        target = GameObject.FindGameObjectWithTag("DropPod").transform;
+        //target = GameObject.FindGameObjectWithTag("DropPod").transform;
     }
 
     void Start()
@@ -65,7 +61,6 @@ public class Bomb : MonoBehaviour {
         positions = bezier.positions;
         nextPoint = positions[1];
         transform.position = positions[0];
-        //StartCoroutine(MoveTowardsTarget());
     }
 
     void Update()
@@ -78,7 +73,10 @@ public class Bomb : MonoBehaviour {
             if (Vector3.Distance(transform.position, nextPoint) <= distanceCheck)
             {
                 speed *= speedTweak;
-                GetNextPoint();
+                if (!GameManager.GameEnded)
+                {
+                    GetNextPoint();
+                }
             }
         }
     }
@@ -87,7 +85,7 @@ public class Bomb : MonoBehaviour {
     {
         if (pointIndex >= positions.Length)
         {
-            Debug.Log("Should move is now FALSE");
+            //Debug.Log("Should move is now FALSE");
             shouldMove = false;
             return;
         }
@@ -95,66 +93,19 @@ public class Bomb : MonoBehaviour {
         nextPoint = positions[pointIndex];
     }
 
-    IEnumerator MoveTowardsTarget()
-    {
-        Vector3[] positions = bezier.positions;
-
-        for (int i = 0; i < bezier.numPoints; i++)
-        {
-            MoveNow(positions[i]);
-            yield return new WaitForSeconds(.018f);
-        }
-
-        yield break;
-    }
-
-    void MoveNow(Vector3 moveToPosition)
-    {
-        transform.position = Vector3.MoveTowards(transform.position, moveToPosition, moveSpeed);
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        // update score
-        GameManager.Instance.UpdateScore(points);
-
-        // die!
-        PlayDeathEffect();
-        Destroy(gameObject);
-    }
-
-    void PlayDeathEffect()
-    {
-        // create the death effect at the enemy position
-        GameObject deathEffectInstance = (GameObject)Instantiate(deathEffect, transform.position, transform.rotation);
-        // after a delay, destroy the object :: needs sufficient time to play the fade-out effect
-        Destroy(deathEffectInstance, 4.0f);
-    }
-
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.tag == "DropPod")
+        if (hitInfo.tag == "Mount")
         {
-            // TODO: Destroy DroPod and End Game
-
             Destroy(gameObject);
-            
-            
-            //GameObject hpGo = GameObject.Find("HalfwayPoint");
-            //DestroyObject(hpGo);
-
-
-
-            // TODO: remove temporary halfwayPoint and line renderer curve
         }
+
+        HealthManager target = GameObject.Find("Mount").GetComponent<HealthManager>();
+        if (target != null && hitInfo.tag == "Mount")
+        {
+            target.TakeDamage(attackDamage);
+            GameManager.Instance.EndGame(); 
+        }
+        
     }
 }

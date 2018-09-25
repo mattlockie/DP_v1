@@ -4,8 +4,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     private int score = 0;
-    public Text scoreText;
+    public Text scoreTextValue;
+    private int highScore;
+    public Text highScoreTextValue;
 
+    public static bool GameEnded { get; set; }
     public static GameManager Instance;
 
     void InitialiseGameManager()
@@ -25,6 +28,10 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         InitialiseGameManager();
+
+        // setup high score
+        GetHighScore();
+        highScoreTextValue.text = highScore.ToString();
     }
 
     public void UpdateScore(int value)
@@ -37,6 +44,23 @@ public class GameManager : MonoBehaviour {
         {
             score += value;
         }
-        scoreText.text = "SCORE: " + score;
+        scoreTextValue.text = score.ToString();
+    }
+
+    public void EndGame()
+    {
+        GameEnded = true;
+        SaveHighScore();
+        Debug.Log("GAME OVER!");
+    }
+
+    public void SaveHighScore()
+    {
+        highScoreTextValue.text = score.ToString();
+        PlayerPrefs.SetInt("HighScore", score);
+    }
+    public void GetHighScore()
+    {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 }

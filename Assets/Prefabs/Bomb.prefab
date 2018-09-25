@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013616919676}
   - 212: {fileID: 212000011069331042}
+  - 114: {fileID: 114000011772272058}
+  - 114: {fileID: 114000012684155396}
   - 50: {fileID: 50000013239688440}
   - 58: {fileID: 58000010050910958}
-  - 114: {fileID: 114000011772272058}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
@@ -85,11 +86,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0cb058e0c860c439b4d82742a611c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 4000012619143176, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
   rb: {fileID: 50000013239688440}
-  deathEffect: {fileID: 1000011328820130, guid: 77eb6024bc8ce88429f0bb75e6b693d9,
-    type: 2}
+  attackDamage: 1
+--- !u!114 &114000012684155396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014016784968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c276e2fa5fd5a4983392d7fce0ab5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   health: 1
   points: 30
+  deathEffects:
+  - {fileID: 1000011328820130, guid: 77eb6024bc8ce88429f0bb75e6b693d9, type: 2}
+  effectsPositionOffset: {fileID: 0}
 --- !u!212 &212000011069331042
 SpriteRenderer:
   m_ObjectHideFlags: 1

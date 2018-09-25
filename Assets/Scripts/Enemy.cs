@@ -2,34 +2,34 @@
 
 public class Enemy : MonoBehaviour {
 
-    public GameObject deathEffect;
     public Rigidbody2D rb;
+    private CargoManager cargoManager;
+    //public GameObject cargo;
+    //private bool cargoDropped = false;
+    //private readonly float cargoDropTimeMin = 1.0f;
+    //private readonly float cargoDropTimeMax = 8.0f;
+    //public float cargoDropTimeCounter = 0.0f;
+    //private float cargoDropTime;
 
-    public GameObject cargo;
-    private bool cargoDropped;
-    //private Vector3 cargoDropOffset;
-
-    public int health = 1;
     public float speed = 5.0f;
-    private readonly int points = 10;
-
-    //private float despawnCountdown;
-    //private float despawnAfter = 5.0f;
 
     void Start()
     {
-        // move enemy across the screen based on speed
-        //despawnCountdown = despawnAfter;
+        cargoManager = GetComponent<CargoManager>();
+         // move enemy across the screen based on speed
+        //cargoDropTime = Random.Range(cargoDropTimeMin, cargoDropTimeMax);
         MoveAcrossScreen();
     }
 
     private void Update()
     {
-        //despawnCountdown -= Time.deltaTime;
-        //if (despawnCountdown <= 0)
+        //if (!cargoDropped)
         //{
-        //    Despawn();
-        //    despawnCountdown = despawnAfter;
+        //    cargoDropTimeCounter += Time.deltaTime;
+        //    if (cargoDropTimeCounter >= cargoDropTime)
+        //    {
+        //        DropCargo(cargo);
+        //    }
         //}
     }
 
@@ -50,47 +50,21 @@ public class Enemy : MonoBehaviour {
         rb.velocity = transform.right * speed;
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        // update score
-        GameManager.Instance.UpdateScore(points);
-
-        // die!
-        PlayDeathEffect();
-        Destroy(gameObject);
-    }
-
     void Despawn()
     {
         // just despawn
         Destroy(gameObject);
     }
 
-    void PlayDeathEffect()
-    {
-        // create the death effect at the enemy position
-        GameObject deathEffectInstance = (GameObject)Instantiate(deathEffect, transform.position, transform.rotation);
-        // after a delay, destroy the object :: needs sufficient time to play the fade-out effect
-        Destroy(deathEffectInstance, 4.0f);
-    }
-
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (cargo.name == "Bomb")
+        // if this enemy uses a trigger to drop cargo, check if we've hit the respective trigger
+        // and that we haven't already dropped cargo
+        if (cargoManager.useTrigger && !cargoManager.cargoDropped)
         {
-            if (!cargoDropped && hitInfo.tag == "BombTrigger")
+            if (hitInfo.tag == cargoManager.trigger.tag)
             {
-                cargoDropped = true;
-                Instantiate(cargo, transform.position, Quaternion.identity);
+                cargoManager.DropCargo();
             }
         }
 
@@ -100,5 +74,11 @@ public class Enemy : MonoBehaviour {
             Despawn();
         }
     }
+
+    //private void DropCargo(GameObject cargo)
+    //{
+    //    cargoDropped = true;
+    //    Instantiate(cargo, transform.position, Quaternion.identity);
+    //}
 
 }

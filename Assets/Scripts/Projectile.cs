@@ -30,26 +30,45 @@ public class Projectile : MonoBehaviour {
             Destroy(gameObject);
         }
         projectileLifespan -= Time.deltaTime;
+
+        // TODO: maybe revist this as it might not be working.
+        if (!GetComponent<Renderer>().isVisible)
+        {
+            //Debug.Log("INVISIBLE!");
+            Destroy(gameObject);
+            return;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         // damage the enemy
-        Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if (enemy != null)
+        HealthManager target = hitInfo.GetComponent<HealthManager>();
+        if (target != null)
         {
             Destroy(gameObject);
-            enemy.TakeDamage(attackDamage);
+            target.TakeDamage(attackDamage);
         }
-        // destroy the bomb
-        Bomb bomb = hitInfo.GetComponent<Bomb>();
-        if (hitInfo.tag == "Bomb")
+        //// destroy the bomb
+        //Bomb bomb = hitInfo.GetComponent<Bomb>();
+        //if (hitInfo.tag == "Bomb")
+        //{
+        //    
+        //    if (bomb != null)
+        //    {
+        //        Destroy(gameObject);
+        //        bomb.TakeDamage(attackDamage);
+        //    }
+        //}
+
+        if (hitInfo.tag == "Chute")
         {
+            Paratrooper paratrooper = hitInfo.GetComponentInParent<Paratrooper>();
             // TODO: Destroy DroPod and End Game
-            if (bomb != null)
+            if (paratrooper != null)
             {
                 Destroy(gameObject);
-                bomb.TakeDamage(attackDamage);
+                paratrooper.TakeDamage(attackDamage, hitInfo.tag, "Projectile");
             }
         }
     }
