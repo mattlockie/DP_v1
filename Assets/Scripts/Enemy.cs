@@ -4,12 +4,6 @@ public class Enemy : MonoBehaviour {
 
     public Rigidbody2D rb;
     private CargoManager cargoManager;
-    //public GameObject cargo;
-    //private bool cargoDropped = false;
-    //private readonly float cargoDropTimeMin = 1.0f;
-    //private readonly float cargoDropTimeMax = 8.0f;
-    //public float cargoDropTimeCounter = 0.0f;
-    //private float cargoDropTime;
 
     public float speed = 5.0f;
 
@@ -19,18 +13,6 @@ public class Enemy : MonoBehaviour {
          // move enemy across the screen based on speed
         //cargoDropTime = Random.Range(cargoDropTimeMin, cargoDropTimeMax);
         MoveAcrossScreen();
-    }
-
-    private void Update()
-    {
-        //if (!cargoDropped)
-        //{
-        //    cargoDropTimeCounter += Time.deltaTime;
-        //    if (cargoDropTimeCounter >= cargoDropTime)
-        //    {
-        //        DropCargo(cargo);
-        //    }
-        //}
     }
 
     void MoveAcrossScreen()
@@ -74,11 +56,4 @@ public class Enemy : MonoBehaviour {
             Despawn();
         }
     }
-
-    //private void DropCargo(GameObject cargo)
-    //{
-    //    cargoDropped = true;
-    //    Instantiate(cargo, transform.position, Quaternion.identity);
-    //}
-
 }

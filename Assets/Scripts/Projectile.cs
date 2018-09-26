@@ -49,27 +49,5 @@ public class Projectile : MonoBehaviour {
             Destroy(gameObject);
             target.TakeDamage(attackDamage);
         }
-        //// destroy the bomb
-        //Bomb bomb = hitInfo.GetComponent<Bomb>();
-        //if (hitInfo.tag == "Bomb")
-        //{
-        //    
-        //    if (bomb != null)
-        //    {
-        //        Destroy(gameObject);
-        //        bomb.TakeDamage(attackDamage);
-        //    }
-        //}
-
-        if (hitInfo.tag == "Chute")
-        {
-            Paratrooper paratrooper = hitInfo.GetComponentInParent<Paratrooper>();
-            // TODO: Destroy DroPod and End Game
-            if (paratrooper != null)
-            {
-                Destroy(gameObject);
-                paratrooper.TakeDamage(attackDamage, hitInfo.tag, "Projectile");
-            }
-        }
     }
 }

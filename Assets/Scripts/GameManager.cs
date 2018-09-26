@@ -56,8 +56,12 @@ public class GameManager : MonoBehaviour {
 
     public void SaveHighScore()
     {
-        highScoreTextValue.text = score.ToString();
-        PlayerPrefs.SetInt("HighScore", score);
+        if (score > highScore)
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+        GetHighScore();
+        highScoreTextValue.text = highScore.ToString();
     }
     public void GetHighScore()
     {

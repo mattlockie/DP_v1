@@ -235,7 +235,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
-      minMaxState: 2
+      minMaxState: 0
     startSize:
       scalar: 0.05
       maxCurve:
@@ -444,7 +444,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 0
+    type: 10
     radius: 0.01
     angle: 25.45
     length: 5
@@ -1629,9 +1629,9 @@ ParticleSystem:
   CollisionModule:
     enabled: 1
     serializedVersion: 3
-    type: 1
+    type: 0
     collisionMode: 1
-    plane0: {fileID: 0}
+    plane0: {fileID: 4000011683234486, guid: eac3759d074aa9b4c9cb96f190b8499c, type: 2}
     plane1: {fileID: 0}
     plane2: {fileID: 0}
     plane3: {fileID: 0}
@@ -1747,7 +1747,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 768
+      m_Bits: 256
     maxCollisionShapes: 256
     quality: 1
     voxelSize: 0.5

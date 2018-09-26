@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class HealthManager : MonoBehaviour {
 
     public int health;
     public int points;
-    public GameObject[] deathEffects;
+    public List<GameObject> deathEffects;
     public Transform effectsPositionOffset;
 
     public void TakeDamage(int damage)
@@ -29,17 +30,23 @@ public class HealthManager : MonoBehaviour {
             }
             else
             {
-                GameObject deathEffectInstance = (GameObject)Instantiate(effect, transform.position, transform.rotation);
+                GameObject deathEffectInstance = (GameObject)Instantiate(effect, transform.position, effect.transform.rotation);
                 // after a delay, destroy the object :: needs sufficient time to play the fade-out effect
                 Destroy(deathEffectInstance, 4.0f);
             }
         }
     }
 
+    public void SwitchDeathEffects(List<GameObject> alternateDeathEffects)
+    {
+        // let a gameobject that has different death effects override the default
+        deathEffects.Clear();
+        deathEffects.AddRange(alternateDeathEffects);
+    }
+
     void Die()
     {
         // update score
-        //Debug.Log("Points for " + gameObject.name + ":" + points);
         GameManager.Instance.UpdateScore(points);
 
         // die!

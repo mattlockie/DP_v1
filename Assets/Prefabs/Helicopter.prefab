@@ -118,13 +118,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39413234b5f711498a4aedbc9c6d7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cargo: {fileID: 1000013390919622, guid: dc595f65116fe834d929110d9bbb104e, type: 2}
+  cargo: {fileID: 1000011684092406, guid: 136b2ce9cf905f647bc7332a74621752, type: 2}
   cargoDropped: 0
-  cargoOffset: {x: 0, y: -1.5, z: 0}
+  cargoOffset: {x: 0, y: -0.5, z: 0}
   useTrigger: 0
   trigger: {fileID: 0}
   dropTimeMin: 1
-  dropTimeMax: 9
+  dropTimeMax: 3
 --- !u!114 &114000013471999298
 MonoBehaviour:
   m_ObjectHideFlags: 1
