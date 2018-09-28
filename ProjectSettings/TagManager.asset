@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bomb
-  - DropPod
+  - Base
   - Enemy
   - BombTrigger
   - DespawnTrigger

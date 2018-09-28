@@ -1,20 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class HealthManager : MonoBehaviour {
+public class LifeManager : MonoBehaviour {
 
     public int health;
     public int points;
+    public bool invincible = false;
     public List<GameObject> deathEffects;
     public Transform effectsPositionOffset;
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        if (!invincible)
         {
-            Die();
+            health -= damage;
+            if (health <= 0)
+            {
+                Die();
+            }
         }
+    }
+
+    public void TakeMortalDamage()
+    {
+        health = 0;
+        Die();
     }
 
     void PlayDeathEffects()
@@ -49,6 +59,10 @@ public class HealthManager : MonoBehaviour {
         // update score
         GameManager.Instance.UpdateScore(points);
 
+        if (gameObject.tag == "Mount")
+        {
+            GameManager.Instance.EndGame();
+        }
         // die!
         PlayDeathEffects();
         Destroy(gameObject);

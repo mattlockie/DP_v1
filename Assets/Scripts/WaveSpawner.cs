@@ -60,16 +60,20 @@ public class WaveSpawner : MonoBehaviour {
             }
         }
 
-        if (waveCountdown <= 0.0f)
+        // new: wrapped this around a GameEnded check to stop spawning when the game finishes
+        if (!GameManager.GameEnded)
         {
-            if (state != SpawnState.Spawning)
+            if (waveCountdown <= 0.0f)
             {
-                StartCoroutine( SpawnWave(waves[nextWave]) );
+                if (state != SpawnState.Spawning)
+                {
+                    StartCoroutine(SpawnWave(waves[nextWave]));
+                }
             }
-        }
-        else
-        {
-            waveCountdown -= Time.deltaTime;
+            else
+            {
+                waveCountdown -= Time.deltaTime;
+            }
         }
     }
 

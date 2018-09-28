@@ -3,14 +3,19 @@ using System.Collections.Generic;
 
 public class Trooper : MonoBehaviour {
 
+    public enum State
+    {
+        Falling,
+        Grounded
+    };
+
     public Rigidbody2D rb;
     public GameObject chute;
     private readonly float defaultDrag = 1.0f;
     public float chuteDrag = 4.0f;
     private Vector3 chuteOffset;
     private GameObject troopersChute;
-    private bool chuteDestroyed = false;
-
+    public bool chuteDestroyed = false;
     public float chuteCountdown = 0.5f;
     private bool chuteReleased = false;
 
@@ -18,17 +23,18 @@ public class Trooper : MonoBehaviour {
 
     public List<GameObject> alternateDeathEffects;
 
-    private HealthManager healthManager;
+    private LifeManager lifeManager;
 
-    public enum State { Falling, Grounded };
     private State state = State.Falling;
+    public GameManager.Side side;
 
     void Awake()
     {
         // offset for chute to line up with trooper correctly
         chuteOffset = new Vector3(0, 0.655f, 0);
-        healthManager = GetComponent<HealthManager>();
         state = State.Falling;
+
+        lifeManager = GetComponent<LifeManager>();
     }
 	
 	void Update() 
@@ -39,7 +45,6 @@ public class Trooper : MonoBehaviour {
             {
                 chuteDestroyed = true;
                 rb.drag = defaultDrag;
-                //ResetTrooper();
             }
         }
 
@@ -49,15 +54,10 @@ public class Trooper : MonoBehaviour {
             if (chuteCountdown <= 0.0f)
             {
                 chuteReleased = true;
-                //Debug.Log("Chute released!");
                 troopersChute = (GameObject)Instantiate(chute, transform.position + chuteOffset, Quaternion.identity, transform);
                 rb.drag = chuteDrag;
             }
         }
-
-
-        //TODO: different trooper deathEffects depending on state.
-        // If you have a chute on, deatheffect will be default. Otherwise, set to the "splatter on ground" death effect.
     }
 
     void OnCollisionEnter2D(Collision2D colliderInfo)
@@ -65,8 +65,8 @@ public class Trooper : MonoBehaviour {
         // kill the trooper if he falls without a chute (i.e. chute has been shot)
         if (colliderInfo.collider.tag == "Ground" && chuteDestroyed)
         {
-            healthManager.SwitchDeathEffects(alternateDeathEffects);
-            healthManager.TakeDamage(fallDamage);
+            lifeManager.SwitchDeathEffects(alternateDeathEffects);
+            lifeManager.TakeDamage(fallDamage);
 
             return;
         }
@@ -75,11 +75,13 @@ public class Trooper : MonoBehaviour {
         if (colliderInfo.collider.tag == "Ground" && !chuteDestroyed)
         {
             // swap out our death effects for if/when we're landed on
-            healthManager.SwitchDeathEffects(alternateDeathEffects);
-            //ResetTrooper();
+            lifeManager.SwitchDeathEffects(alternateDeathEffects);
+
             rb.drag = defaultDrag;
 
             state = State.Grounded;
+
+            rb.isKinematic = true;
 
             Destroy(troopersChute);
 
@@ -89,16 +91,45 @@ public class Trooper : MonoBehaviour {
         // if the trooper hits another trooper, destroy them both
         if (colliderInfo.collider.tag == "Trooper" && state != State.Falling)
         {
-            healthManager.SwitchDeathEffects(alternateDeathEffects);
-            // get the HM of the other Trooper we've hit and damge it
-            HealthManager hitTrooper = colliderInfo.gameObject.GetComponent<HealthManager>();
+            lifeManager.SwitchDeathEffects(alternateDeathEffects);
+            // get the LifeManager of the other Trooper we've hit and damge it
+            LifeManager hitTrooper = colliderInfo.gameObject.GetComponent<LifeManager>();
             hitTrooper.SwitchDeathEffects(alternateDeathEffects);
             hitTrooper.TakeDamage(fallDamage);
+            DeployedTroops.Instance.RemoveTrooper(hitTrooper.gameObject); // remove trooper from our deployed trooper list
+            
 
             // take damage ourselves
-            healthManager.TakeDamage(fallDamage);
+            lifeManager.TakeDamage(fallDamage);
+
+            return;
+        }
+
+        // if the trooper lands on another troopers chute, destroy that chute
+        //&& colliderInfo.collider.transform.position.y <= transform.position.y
+        if (colliderInfo.collider.tag == "Chute" && state == State.Falling)
+        {
+            LifeManager troopersChute = colliderInfo.collider.gameObject.GetComponent<LifeManager>();
+            troopersChute.TakeDamage(fallDamage);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D colliderInfo)
+    {
+        // if we land on the DropPod...
+        if ((colliderInfo.tag == "Mount" || colliderInfo.tag == "Base") && state == State.Falling)
+        {
+            // if the game isn't already over...
+            if (!GameManager.GameEnded) {
+                // get the LifeManager of the other Mount and damge it
+                LifeManager target = GameObject.Find("Mount").GetComponent<LifeManager>();
+                target.TakeMortalDamage();
+            }
+
+            // take damage ourselves
+            lifeManager.TakeDamage(fallDamage);
 
             return;
         }
     }
- }
+}

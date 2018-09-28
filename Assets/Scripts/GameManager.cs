@@ -3,13 +3,20 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager Instance;
+
+    public enum Side
+    {
+        Left,
+        Right
+    };
+
     private int score = 0;
     public Text scoreTextValue;
     private int highScore;
     public Text highScoreTextValue;
 
     public static bool GameEnded { get; set; }
-    public static GameManager Instance;
 
     void InitialiseGameManager()
     {
@@ -59,10 +66,10 @@ public class GameManager : MonoBehaviour {
         if (score > highScore)
         {
             PlayerPrefs.SetInt("HighScore", score);
+            highScoreTextValue.text = score.ToString();
         }
-        GetHighScore();
-        highScoreTextValue.text = highScore.ToString();
     }
+
     public void GetHighScore()
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);

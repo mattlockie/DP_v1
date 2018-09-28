@@ -17,12 +17,9 @@ public class CargoManager : MonoBehaviour {
     private float dropTimeCounter = 0.0f;
     private float dropTime;
 
-    // TODO: Cargo Manager! 
-    // see if I can have a bool that determines if we drop based on collider or by a time counter
-    // so that it can be played with in the inspector.
-
     void Start() 
 	{
+        // find a random drop time
         dropTime = Random.Range(dropTimeMin, dropTimeMax);
     }
 	

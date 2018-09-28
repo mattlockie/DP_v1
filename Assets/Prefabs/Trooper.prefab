@@ -24,6 +24,8 @@ GameObject:
   - 50: {fileID: 50000014124855344}
   - 114: {fileID: 114000014051755632}
   - 114: {fileID: 114000012137612836}
+  - 114: {fileID: 114000012433816192}
+  - 95: {fileID: 95000012471497614}
   m_Layer: 10
   m_Name: Trooper
   m_TagString: Trooper
@@ -75,6 +77,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.4375}
+--- !u!95 &95000012471497614
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011684092406}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b29c6f97e2ad4784cb5e2f47b8491e2c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000012137612836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,10 +107,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   points: 5
+  invincible: 0
   deathEffects:
   - {fileID: 1000011328820130, guid: 927fbfa6d6cdf944bb3baf6a9ebddf1d, type: 2}
   - {fileID: 1000011328820130, guid: 3319ef888ce7a874384afec8c75d314f, type: 2}
   effectsPositionOffset: {fileID: 0}
+--- !u!114 &114000012433816192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011684092406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954714cea45dadf4387415cdca7ae3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 95000012471497614}
+  targetLeft: {fileID: 4000012222820438, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+  targetRight: {fileID: 4000011694664584, guid: 9a6adf82e0e785e488f94eadf007a8f5,
+    type: 2}
+  walk: 0
+  moveSpeed: 1
+  direction: 0
+  goGoGo: 0
 --- !u!114 &114000014051755632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,6 +145,7 @@ MonoBehaviour:
   rb: {fileID: 50000014124855344}
   chute: {fileID: 1000011539928636, guid: 6bd0f0d2fcfd504498febafa20c12cff, type: 2}
   chuteDrag: 10
+  chuteDestroyed: 0
   chuteCountdown: 0.4
   alternateDeathEffects:
   - {fileID: 1000011328820130, guid: f3a0edcda6779fe4db899dceae9e546b, type: 2}

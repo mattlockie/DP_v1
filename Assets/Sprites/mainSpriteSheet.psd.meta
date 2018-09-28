@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d75329ab0071b9948a3dda04fbbb01e9
-timeCreated: 1537779293
+timeCreated: 1537995902
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -19,6 +19,10 @@ TextureImporter:
     21300024: DoubleSprite
     21300026: ProjectileSprite
     21300028: JetSprite_2
+    21300030: Trooper_1
+    21300032: Trooper_2
+    21300034: Trooper_3
+    21300036: Trooper_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -261,6 +265,58 @@ TextureImporter:
         y: 55
         width: 23
         height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Trooper_1
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 42
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Trooper_2
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 42
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Trooper_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 42
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Trooper_4
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 42
+        width: 4
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

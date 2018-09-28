@@ -124,7 +124,7 @@ MonoBehaviour:
   useTrigger: 0
   trigger: {fileID: 0}
   dropTimeMin: 1
-  dropTimeMax: 3
+  dropTimeMax: 9
 --- !u!114 &114000013471999298
 MonoBehaviour:
   m_ObjectHideFlags: 1

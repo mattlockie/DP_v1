@@ -21,11 +21,6 @@ public class Bomb : MonoBehaviour {
 
     private int pointIndex = 0;
 
-    private void Awake()
-    {
-        //target = GameObject.FindGameObjectWithTag("DropPod").transform;
-    }
-
     void Start()
     {
         startingPosition = transform;
@@ -57,6 +52,7 @@ public class Bomb : MonoBehaviour {
         // remove halfway point as it's no longer needed (until next bomb)
         Destroy(halfwayPoint);
 
+        // set our positions and our start point
         positions = bezier.positions;
         nextPoint = positions[1];
         transform.position = positions[0];
@@ -96,15 +92,17 @@ public class Bomb : MonoBehaviour {
     {
         if (hitInfo.tag == "Mount")
         {
+            // destory the bomb
             Destroy(gameObject);
         }
 
-        HealthManager target = GameObject.Find("Mount").GetComponent<HealthManager>();
-        if (target != null && hitInfo.tag == "Mount")
+        if (!GameManager.GameEnded)
         {
-            target.TakeDamage(attackDamage);
-            GameManager.Instance.EndGame(); 
+            LifeManager mount = GameObject.Find("Mount").GetComponent<LifeManager>();
+            if (mount != null && hitInfo.tag == "Mount")
+            {
+                mount.TakeDamage(attackDamage);
+            }
         }
-        
     }
 }

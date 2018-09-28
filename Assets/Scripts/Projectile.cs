@@ -31,7 +31,8 @@ public class Projectile : MonoBehaviour {
         }
         projectileLifespan -= Time.deltaTime;
 
-        // TODO: maybe revist this as it might not be working.
+    // we don't want to be able to shoot gameObjects that are off-screen
+    //TODO: maybe revist this as it might not be working.
         if (!GetComponent<Renderer>().isVisible)
         {
             //Debug.Log("INVISIBLE!");
@@ -43,7 +44,7 @@ public class Projectile : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         // damage the enemy
-        HealthManager target = hitInfo.GetComponent<HealthManager>();
+        LifeManager target = hitInfo.GetComponent<LifeManager>();
         if (target != null)
         {
             Destroy(gameObject);
