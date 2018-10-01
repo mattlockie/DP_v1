@@ -25,6 +25,7 @@ public class CargoManager : MonoBehaviour {
 	
 	void Update() 
 	{
+        // can either drop cargo based on a trigger (collider that we hit) or based on a timer.
         if (useTrigger)
         {
             return;
@@ -43,20 +44,10 @@ public class CargoManager : MonoBehaviour {
     public void DropCargo()
     {
         cargoDropped = true;
-        Instantiate(cargo, transform.position + cargoOffset, Quaternion.identity);
+        // we don't actually want to drop cargo if the game has ended
+        if (!GameManager.GameEnded)
+        {
+            Instantiate(cargo, transform.position + cargoOffset, Quaternion.identity);
+        }
     }
-
-    //private void OnTriggerEnter2D(Collider2D hitInfo)
-    //{
-    //    if (useTrigger && !cargoDropped)
-    //    {
-    //        for (int i = 0; i < triggers.Length + 1; i++)
-    //        {
-    //            if (hitInfo == triggers[i])
-    //            {
-    //                DropCargo();
-    //            }
-    //        }
-    //    }
-    //}
 }

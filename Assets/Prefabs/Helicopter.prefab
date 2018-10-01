@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 50000010034075630}
-  speed: 2
+  speed: 2.75
 --- !u!114 &114000013092541048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,8 +123,8 @@ MonoBehaviour:
   cargoOffset: {x: 0, y: -0.5, z: 0}
   useTrigger: 0
   trigger: {fileID: 0}
-  dropTimeMin: 1
-  dropTimeMax: 9
+  dropTimeMin: 0.75
+  dropTimeMax: 6.5
 --- !u!114 &114000013471999298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   points: 10
+  invincible: 0
   deathEffects:
   - {fileID: 1000011328820130, guid: 9b8a01130381c4c44aacb13a57e7e6bc, type: 2}
   - {fileID: 1000011328820130, guid: 927fbfa6d6cdf944bb3baf6a9ebddf1d, type: 2}

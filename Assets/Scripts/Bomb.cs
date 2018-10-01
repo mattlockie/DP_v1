@@ -74,6 +74,12 @@ public class Bomb : MonoBehaviour {
                 }
             }
         }
+        if (GameManager.GameEnded)
+        {
+            //Debug.Log("Destroyed Bomb because game ended.");
+            // if the game finishes mid-drop, just destroy otherwise we get weird translation bugs
+            Destroy(gameObject);
+        }
     }
 
     void GetNextPoint()

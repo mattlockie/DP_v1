@@ -106,7 +106,6 @@ public class Trooper : MonoBehaviour {
         }
 
         // if the trooper lands on another troopers chute, destroy that chute
-        //&& colliderInfo.collider.transform.position.y <= transform.position.y
         if (colliderInfo.collider.tag == "Chute" && state == State.Falling)
         {
             LifeManager troopersChute = colliderInfo.collider.gameObject.GetComponent<LifeManager>();

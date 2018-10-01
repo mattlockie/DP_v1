@@ -5,13 +5,13 @@ public class Enemy : MonoBehaviour {
     public Rigidbody2D rb;
     private CargoManager cargoManager;
 
-    public float speed = 5.0f;
+    // if changing speed, you will also need to change the 
+    // cargo droptimes so they drop within the right timeframe
+    public float speed = 5.0f; 
 
     void Start()
     {
         cargoManager = GetComponent<CargoManager>();
-         // move enemy across the screen based on speed
-        //cargoDropTime = Random.Range(cargoDropTimeMin, cargoDropTimeMax);
         MoveAcrossScreen();
     }
 

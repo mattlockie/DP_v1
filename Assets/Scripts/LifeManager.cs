@@ -61,6 +61,7 @@ public class LifeManager : MonoBehaviour {
 
         if (gameObject.tag == "Mount")
         {
+            //Debug.Log("Ending game...");
             GameManager.Instance.EndGame();
         }
         // die!

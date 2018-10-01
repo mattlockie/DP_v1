@@ -47,22 +47,22 @@ public class WaveSpawner : MonoBehaviour {
 
     void Update()
     {
-        if (state == SpawnState.Waiting)
-        {
-            if (!EnemyIsAlive())
-            {
-                // begin new round
-                WaveCompleted();
-            }
-            else
-            {
-                return;
-            }
-        }
-
         // new: wrapped this around a GameEnded check to stop spawning when the game finishes
         if (!GameManager.GameEnded)
         {
+            if (state == SpawnState.Waiting)
+            {
+                if (!EnemyIsAlive())
+                {
+                    // begin new round
+                    WaveCompleted();
+                }
+                else
+                {
+                    return;
+                }
+            }
+
             if (waveCountdown <= 0.0f)
             {
                 if (state != SpawnState.Spawning)
@@ -83,8 +83,11 @@ public class WaveSpawner : MonoBehaviour {
 
         for (int i = 0; i < _wave.count; i++)
         {
-            SpawnEnemy(_wave.enemy);
-            yield return new WaitForSeconds(1.0f / _wave.rate);
+            if (!GameManager.GameEnded)
+            {
+                SpawnEnemy(_wave.enemy);
+                yield return new WaitForSeconds(1.0f / _wave.rate);
+            }
         }
 
         state = SpawnState.Waiting;

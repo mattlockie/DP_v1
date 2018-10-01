@@ -5,8 +5,8 @@ public class Weapon : MonoBehaviour {
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
 
-    private float fireRate = 0.15f;
-    private float fireCooldown = 0f;
+    private float fireRate = 0.175f;
+    private float fireCooldown = 0.0f;
 
     void Update() 
 	{

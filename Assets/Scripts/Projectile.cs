@@ -31,8 +31,7 @@ public class Projectile : MonoBehaviour {
         }
         projectileLifespan -= Time.deltaTime;
 
-    // we don't want to be able to shoot gameObjects that are off-screen
-    //TODO: maybe revist this as it might not be working.
+        // we don't want to be able to shoot gameObjects that are off-screen
         if (!GetComponent<Renderer>().isVisible)
         {
             //Debug.Log("INVISIBLE!");

@@ -13,6 +13,8 @@ public class DeployedTroops : MonoBehaviour {
     private bool canAddTroops = true;
     private bool allTroopsMoved = false;
 
+    public static int troopersReachedTarget = 0;
+
     private void Awake()
     {
         InitialiseDeployedTroops();
@@ -44,6 +46,7 @@ public class DeployedTroops : MonoBehaviour {
                         thisTroopersMovement.move = true;
                     }
 
+                    // if every trooper has reached the target, set allTroops to moved which triggers the game ending
                     if (troopersToMove.Count == i + 1 && thisTroopersMovement.state == TrooperMovement.State.ReachedTarget)
                     {
                         allTroopsMoved = true;
@@ -55,6 +58,7 @@ public class DeployedTroops : MonoBehaviour {
             }
         }
 
+        // blow up the Mount and end the game
         if (allTroopsMoved)
         {
             if (!GameManager.GameEnded)
@@ -83,10 +87,6 @@ public class DeployedTroops : MonoBehaviour {
 
     public void AddTrooper(GameObject trooper)
     {
-        // FIXME: Temporarily made troopers invincible
-        // we want to be able to destory a trooper on their way to the Mount (e.g. from a falling trooper)
-        // and stop all movement then start back when we have four again
-
         // add a Trooper to either the left or right list of troopers
         //      NB: this is the only place where we set whether the trooper is on the left or right!
         if (trooper.transform.position.x < 0)

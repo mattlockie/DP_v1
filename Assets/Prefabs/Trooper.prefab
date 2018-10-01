@@ -124,13 +124,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 95000012471497614}
+  state: 0
+  move: 0
+  reachedTarget: 0
+  side: 0
   targetLeft: {fileID: 4000012222820438, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+  targetLeftSteps:
+  - {fileID: 4000012222820438, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+  - {fileID: 4000013173888950, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+  - {fileID: 4000013262633742, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+  - {fileID: 4000012560361224, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
   targetRight: {fileID: 4000011694664584, guid: 9a6adf82e0e785e488f94eadf007a8f5,
     type: 2}
-  walk: 0
-  moveSpeed: 1
-  direction: 0
-  goGoGo: 0
+  targetRightSteps:
+  - {fileID: 4000011694664584, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+  - {fileID: 4000014199060236, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+  - {fileID: 4000010979059642, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+  - {fileID: 4000010893002212, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
 --- !u!114 &114000014051755632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,10 +156,11 @@ MonoBehaviour:
   chute: {fileID: 1000011539928636, guid: 6bd0f0d2fcfd504498febafa20c12cff, type: 2}
   chuteDrag: 10
   chuteDestroyed: 0
-  chuteCountdown: 0.4
+  chuteCountdown: 0.75
   alternateDeathEffects:
   - {fileID: 1000011328820130, guid: f3a0edcda6779fe4db899dceae9e546b, type: 2}
   - {fileID: 1000011328820130, guid: da99c0cdb2f7042459e09358b44d43a6, type: 2}
+  side: 0
 --- !u!212 &212000011797697348
 SpriteRenderer:
   m_ObjectHideFlags: 1
