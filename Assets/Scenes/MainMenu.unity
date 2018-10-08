@@ -500,7 +500,9 @@ MonoBehaviour:
     m_LineSpacing: 1.5
   m_Text: 'PRESS <i> FOR INSTRUCTIONS
 
-    PRESS <space bar> FOR KEYBOARD PLAY'
+    PRESS <space bar> FOR KEYBOARD PLAY
+
+    PRESS <esc> TO EXIT GAME'
 --- !u!222 &355811291
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1192,7 +1194,7 @@ MonoBehaviour:
     m_LineSpacing: 1.5
   m_Text: 'By
 
-    Matt Lockie'
+    MALO GAMES'
 --- !u!222 &1512835129
 CanvasRenderer:
   m_ObjectHideFlags: 0

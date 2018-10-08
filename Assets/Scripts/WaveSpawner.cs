@@ -35,11 +35,11 @@ public class WaveSpawner : MonoBehaviour {
     {
         if (spawnPoints.Length == 0)
         {
-            Debug.Log("No spawn points referenced!");
+            Debug.LogWarning("No spawn points referenced!");
         }
         if (waves.Length == 0)
         {
-            Debug.Log("No waves created!");
+            Debug.LogWarning("No waves created!");
         }
 
         waveCountdown = timeBetweenWaves;   
@@ -104,7 +104,7 @@ public class WaveSpawner : MonoBehaviour {
         if (nextWave + 1 > waves.Length - 1)
         {
             nextWave = 0;
-            Debug.Log("All waves complete! Looping...");
+            //Debug.Log("All waves complete! Looping...");
         }
         else
         {

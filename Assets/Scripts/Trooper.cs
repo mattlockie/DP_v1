@@ -65,6 +65,13 @@ public class Trooper : MonoBehaviour {
         // kill the trooper if he falls without a chute (i.e. chute has been shot)
         if (colliderInfo.collider.tag == "Ground" && chuteDestroyed)
         {
+            // get sound FX
+            Effects effects = GetComponent<Effects>();
+            if (effects != null)
+            {
+                string soundToPlay = effects.GetSound("GroundHit");
+                AudioManager.Instance.Play(soundToPlay);
+            }
             lifeManager.SwitchDeathEffects(alternateDeathEffects);
             lifeManager.TakeDamage(fallDamage);
 
@@ -91,6 +98,14 @@ public class Trooper : MonoBehaviour {
         // if the trooper hits another trooper, destroy them both
         if (colliderInfo.collider.tag == "Trooper" && state != State.Falling)
         {
+            // get sound FX
+            Effects effects = GetComponent<Effects>();
+            if (effects != null)
+            {
+                string soundToPlay = effects.GetSound("GroundHit");
+                AudioManager.Instance.Play(soundToPlay);
+            }
+
             lifeManager.SwitchDeathEffects(alternateDeathEffects);
             // get the LifeManager of the other Trooper we've hit and damge it
             LifeManager hitTrooper = colliderInfo.gameObject.GetComponent<LifeManager>();
@@ -108,8 +123,16 @@ public class Trooper : MonoBehaviour {
         // if the trooper lands on another troopers chute, destroy that chute
         if (colliderInfo.collider.tag == "Chute" && state == State.Falling)
         {
+            // get sound FX
+            Effects effects = colliderInfo.collider.GetComponent<Effects>();
+            if (effects != null)
+            {
+                string soundToPlay = effects.GetSound("Death");
+                AudioManager.Instance.Play(soundToPlay);
+            }
             LifeManager troopersChute = colliderInfo.collider.gameObject.GetComponent<LifeManager>();
             troopersChute.TakeDamage(fallDamage);
+
         }
     }
 
@@ -120,13 +143,21 @@ public class Trooper : MonoBehaviour {
         {
             // if the game isn't already over...
             if (!GameManager.GameEnded) {
+                // get sound FX
+                Effects effects = colliderInfo.GetComponent<Effects>();
+                if (effects != null)
+                {
+                    string soundToPlay = effects.GetSound("Death");
+                    AudioManager.Instance.Play(soundToPlay);
+                }
                 // get the LifeManager of the other Mount and damge it
                 LifeManager target = GameObject.Find("Mount").GetComponent<LifeManager>();
                 target.TakeMortalDamage();
             }
 
-            // take damage ourselves
-            lifeManager.TakeDamage(fallDamage);
+            // reduce points to 0 for this trooper and take damage ourselves
+            lifeManager.points = 0;
+            lifeManager.TakeMortalDamage();
 
             return;
         }

@@ -56,6 +56,14 @@ public class Bomb : MonoBehaviour {
         positions = bezier.positions;
         nextPoint = positions[1];
         transform.position = positions[0];
+
+        // get sound FX
+        Effects effects = GetComponent<Effects>();
+        if (effects != null)
+        {
+            string soundToPlay = effects.GetSound("BombDrop");
+            AudioManager.Instance.Play(soundToPlay);
+        }
     }
 
     void Update()
@@ -107,6 +115,14 @@ public class Bomb : MonoBehaviour {
             LifeManager mount = GameObject.Find("Mount").GetComponent<LifeManager>();
             if (mount != null && hitInfo.tag == "Mount")
             {
+                // get sound FX
+                Effects effects = hitInfo.GetComponent<Effects>();
+                if (effects != null)
+                {
+                    string soundToPlay = effects.GetSound("Death");
+                    AudioManager.Instance.Play(soundToPlay);
+                }
+                // damage the Mount
                 mount.TakeDamage(attackDamage);
             }
         }

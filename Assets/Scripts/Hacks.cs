@@ -33,7 +33,7 @@ public class Hacks : MonoBehaviour
             // reset high score to zero 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Debug.Log("HACK: Setting score to Zero");
+                //Debug.Log("HACK: Setting score to Zero");
                 PlayerPrefs.SetInt("HighScore", 0);
                 GameManager.Instance.highScoreTextValue.text = PlayerPrefs.GetInt("HighScore").ToString();
             }
@@ -54,6 +54,13 @@ public class Hacks : MonoBehaviour
 
         if (hit)
         {
+            // get sound FX
+            Effects effects = hit.collider.GetComponent<Effects>();
+            if (effects != null)
+            {
+                string soundToPlay = effects.GetSound("Death");
+                AudioManager.Instance.Play(soundToPlay);
+            }
             LifeManager target = hit.collider.gameObject.GetComponent<LifeManager>();
             if (target != null)
             {

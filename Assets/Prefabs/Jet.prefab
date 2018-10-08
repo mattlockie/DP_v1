@@ -26,6 +26,7 @@ GameObject:
   - 61: {fileID: 61000012708660694}
   - 50: {fileID: 50000010034075630}
   - 95: {fileID: 95000013208367534}
+  - 114: {fileID: 114000013267081208}
   m_Layer: 0
   m_Name: Jet
   m_TagString: Enemy
@@ -107,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   points: 10
+  invincible: 0
   deathEffects:
   - {fileID: 1000011328820130, guid: 9b8a01130381c4c44aacb13a57e7e6bc, type: 2}
   - {fileID: 1000011328820130, guid: 927fbfa6d6cdf944bb3baf6a9ebddf1d, type: 2}
@@ -143,6 +145,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 50000010034075630}
   speed: 5
+--- !u!114 &114000013267081208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013024305702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2851584d262438049aebcec4af6008fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFX:
+  - name: Death
+    sound: GenericHit
 --- !u!212 &212000011975592014
 SpriteRenderer:
   m_ObjectHideFlags: 1

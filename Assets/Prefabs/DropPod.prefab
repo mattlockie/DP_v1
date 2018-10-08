@@ -172,6 +172,7 @@ GameObject:
   - 4: {fileID: 4000010307988996}
   - 114: {fileID: 114000013089405568}
   - 61: {fileID: 61000013494085230}
+  - 114: {fileID: 114000012666776184}
   m_Layer: 0
   m_Name: Mount
   m_TagString: Mount
@@ -189,6 +190,7 @@ GameObject:
   - 4: {fileID: 4000012619143176}
   - 212: {fileID: 212000012344311306}
   - 61: {fileID: 61000013691858494}
+  - 114: {fileID: 114000013847672606}
   m_Layer: 0
   m_Name: Base
   m_TagString: Base
@@ -464,6 +466,20 @@ MonoBehaviour:
   defaultWeapon: {fileID: 1000012740053246, guid: d5a22715b54327141ba2268748b0cfeb,
     type: 2}
   weaponSpawnPoint: {fileID: 4000014174286786}
+--- !u!114 &114000012666776184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012590232062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2851584d262438049aebcec4af6008fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFX:
+  - name: Death
+    sound: TurretExplosion
 --- !u!114 &114000013089405568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,6 +499,20 @@ MonoBehaviour:
   - {fileID: 1000011328820130, guid: 86d018fe0226ea646afbe19b7d414f5c, type: 2}
   - {fileID: 1000011328820130, guid: 3719259b47514a74c9bc2ae26a0924b6, type: 2}
   effectsPositionOffset: {fileID: 4000010085764408}
+--- !u!114 &114000013847672606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013112103970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2851584d262438049aebcec4af6008fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFX:
+  - name: Death
+    sound: TurretExplosion
 --- !u!212 &212000011770285198
 SpriteRenderer:
   m_ObjectHideFlags: 1

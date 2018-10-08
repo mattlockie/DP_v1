@@ -5,6 +5,14 @@ using UnityEngine.Audio;
 public class Sound {
 
     public string name;
+    public enum Type
+    {
+        Start,
+        Death,
+        Collide,
+        Fall
+    };
+    public Type soundType;
     public  AudioClip clip;
 
     [Range(0.0f, 1.0f)]

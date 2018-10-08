@@ -65,6 +65,10 @@ public class GameManager : MonoBehaviour {
                 {
                     PlayGame();
                 }
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Quit();
+                }
             }
             if (!gameOverCountdownReached)
             {
@@ -86,21 +90,33 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("MainMenu");
     }
 
+    private void Quit()
+    {
+        Application.Quit();
+    }
+
     public void UpdateScore(int value)
     {
-        if (score + value <= 0)
+        // if the game hasn't ended let's update the score
+        if (!GameEnded)
         {
-            score = 0;
-        }
-        else
-        {
-            score += value;
+            if (score + value <= 0)
+            {
+                // we can't let the score go negative
+                score = 0;
+            }
+            else
+            {
+                score += value;
+            }
         }
         scoreTextValue.text = score.ToString();
     }
 
     public void EndGame()
     {
+        // GameEnded is used a LOT throughout the code to determine 
+        // whether an action is able to be carried out or not
         GameEnded = true;
         gameOverText.SetActive(true);
 
@@ -122,6 +138,5 @@ public class GameManager : MonoBehaviour {
     }
 }
 
-// TODO: Sound effects
 // TODO: Music
 // TODO: Adjust spawner to feel like it's a bit more "continuous"

@@ -6,6 +6,22 @@ public class MainMenu : MonoBehaviour {
     public GameObject splashScreen;
     public GameObject instructions;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ShowInstructions();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayGame(); 
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Quit();
+        }
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("MainScene");
@@ -17,15 +33,8 @@ public class MainMenu : MonoBehaviour {
         instructions.SetActive(true);
     }
 
-    private void Update()
+    private void Quit()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            ShowInstructions();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayGame(); 
-        }
+        Application.Quit();
     }
 }

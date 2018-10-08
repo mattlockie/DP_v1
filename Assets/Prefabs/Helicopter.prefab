@@ -26,6 +26,7 @@ GameObject:
   - 61: {fileID: 61000012708660694}
   - 50: {fileID: 50000010034075630}
   - 95: {fileID: 95000012897471712}
+  - 114: {fileID: 114000012355678504}
   m_Layer: 0
   m_Name: Helicopter
   m_TagString: Enemy
@@ -94,6 +95,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000012355678504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013024305702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2851584d262438049aebcec4af6008fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFX:
+  - name: Death
+    sound: GenericHit
 --- !u!114 &114000012365427306
 MonoBehaviour:
   m_ObjectHideFlags: 1

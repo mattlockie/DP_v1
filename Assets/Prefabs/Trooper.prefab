@@ -22,10 +22,11 @@ GameObject:
   - 212: {fileID: 212000011797697348}
   - 61: {fileID: 61000012304257590}
   - 50: {fileID: 50000014124855344}
+  - 95: {fileID: 95000012471497614}
   - 114: {fileID: 114000014051755632}
   - 114: {fileID: 114000012137612836}
   - 114: {fileID: 114000012433816192}
-  - 95: {fileID: 95000012471497614}
+  - 114: {fileID: 114000013699233778}
   m_Layer: 10
   m_Name: Trooper
   m_TagString: Trooper
@@ -141,6 +142,22 @@ MonoBehaviour:
   - {fileID: 4000014199060236, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
   - {fileID: 4000010979059642, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
   - {fileID: 4000010893002212, guid: 9a6adf82e0e785e488f94eadf007a8f5, type: 2}
+--- !u!114 &114000013699233778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011684092406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2851584d262438049aebcec4af6008fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFX:
+  - name: Death
+    sound: GenericHit
+  - name: GroundHit
+    sound: TrooperGroundHit
 --- !u!114 &114000014051755632
 MonoBehaviour:
   m_ObjectHideFlags: 1

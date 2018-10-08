@@ -88,7 +88,7 @@ MonoBehaviour:
   rb: {fileID: 50000013618468070}
   speed: 20
   attackDamage: 1
-  soundEffect: Projectile
+  fireSound: Projectile
 --- !u!212 &212000013192122278
 SpriteRenderer:
   m_ObjectHideFlags: 1

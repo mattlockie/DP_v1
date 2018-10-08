@@ -123,7 +123,7 @@ public class DeployedTroops : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Could not find a 'Side' to add this trooper to!");
+            Debug.LogWarning("Could not find a 'Side' to add this trooper to!");
         }
     }
 
@@ -148,7 +148,7 @@ public class DeployedTroops : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Could not find a 'Side' to remove this trooper from!");
+            Debug.LogWarning("Could not find a 'Side' to remove this trooper from!");
         }
     }
 

@@ -22,6 +22,7 @@ GameObject:
   - 212: {fileID: 212000013684717264}
   - 114: {fileID: 114000013865307778}
   - 60: {fileID: 60000011164054356}
+  - 114: {fileID: 114000011125400704}
   m_Layer: 10
   m_Name: Chute
   m_TagString: Chute
@@ -66,6 +67,20 @@ PolygonCollider2D:
       - {x: 0.0625, y: -0.125}
       - {x: 0, y: -0.25}
       - {x: 0.0625, y: -0.25}
+--- !u!114 &114000011125400704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011539928636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2851584d262438049aebcec4af6008fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFX:
+  - name: Death
+    sound: ChuteHit
 --- !u!114 &114000013865307778
 MonoBehaviour:
   m_ObjectHideFlags: 1

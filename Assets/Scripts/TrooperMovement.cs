@@ -36,6 +36,12 @@ public class TrooperMovement : MonoBehaviour {
         {
             TranslateToTarget();
         }
+
+        // make sure when the game ends, that any anim on this trooper is stopped
+        if (GameManager.GameEnded)
+        {
+            StopAnim();
+        }
     }
 
     public void StartAnim()
@@ -62,7 +68,7 @@ public class TrooperMovement : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Target 'Side' not found!?");
+            Debug.LogWarning("Target 'Side' not found!?");
         }
 
         Vector3 dir = new Vector3(target.transform.position.x, transform.position.y, transform.position.z) - new Vector3(transform.position.x, transform.position.y, transform.position.z);
