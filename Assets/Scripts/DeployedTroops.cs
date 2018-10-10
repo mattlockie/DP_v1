@@ -22,6 +22,9 @@ public class DeployedTroops : MonoBehaviour {
 
     void Update()
     {
+        // this is probably over-complicated, but in short we're iterating
+        // through our troopers that are to be moved, and kicking off their
+        // movement once the previous trooper has finished.
         if (moveNow)
         {
             if (!allTroopsMoved)
@@ -63,10 +66,19 @@ public class DeployedTroops : MonoBehaviour {
         {
             if (!GameManager.GameEnded)
             {
-                LifeManager mount = GameObject.Find("Mount").GetComponent<LifeManager>();
-                if (mount != null)
+                // get sound FX
+                GameObject mount = GameObject.Find("Mount");
+                Effects effects = mount.GetComponent<Effects>();
+                if (effects != null)
                 {
-                    mount.TakeMortalDamage();
+                    string soundToPlay = effects.GetSound("Death");
+                    AudioManager.Instance.Play(soundToPlay);
+                }
+                // destroy the mount
+                LifeManager lifeManager = mount.GetComponent<LifeManager>();
+                if (lifeManager != null)
+                {
+                    lifeManager.TakeMortalDamage();
                 }
                 GameManager.Instance.EndGame();
             }
@@ -89,7 +101,7 @@ public class DeployedTroops : MonoBehaviour {
     {
         // add a Trooper to either the left or right list of troopers
         //      NB: this is the only place where we set whether the trooper is on the left or right!
-        if (trooper.transform.position.x < 0)
+        if (trooper.transform.position.x < 0) // left sude
         {
             trooper.GetComponent<Trooper>().side = GameManager.Side.Left;
 
@@ -106,7 +118,7 @@ public class DeployedTroops : MonoBehaviour {
                 canAddTroops = false;
             }
         }
-        else if (trooper.transform.position.x > 0)
+        else if (trooper.transform.position.x > 0) // right sude
         {
             trooper.GetComponent<Trooper>().side = GameManager.Side.Right;
 
@@ -154,6 +166,10 @@ public class DeployedTroops : MonoBehaviour {
 
     private List<GameObject> ResetTroopers(List<GameObject> _troopers)
     {
+        // troopers that land are added to a list of troopers that might get together
+        // and destroy the turret. 
+        // these ground troops can be destroyed if antoher trooper lands on them so 
+        // we need to be able to reset this list when we add new troopers.
         List<GameObject> troopersCopy = new List<GameObject>(_troopers);
 
         _troopers.Clear();
